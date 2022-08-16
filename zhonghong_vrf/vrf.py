@@ -64,7 +64,7 @@ def subscribe(client: mqtt_client):
         else:
             global STATES
             ac_temp[msg.topic.split('/')[-2]] = STATES[msg.topic.split('/')[-2]][msg.payload.decode()]
-        if msg.topic.split('/')[-2] == 'mode' and msg.payload.decode() == 'off':
+        if (msg.topic.split('/')[-2] == 'mode' or msg.topic.split('/')[-2] == 'on') and msg.payload.decode().lower() == 'off':
             ac_temp['on'] = 0
         else:
             ac_temp['on'] = 1
